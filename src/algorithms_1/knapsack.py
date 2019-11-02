@@ -1,25 +1,14 @@
 
-
-def knapsack(arr, i, w, memo):
-    if i < 0:
-        return 0, []
-
-    key = (i, w)
-    if key in memo:
-        return memo[key]
-
-    v, sack = knapsack(arr, i - 1, w, memo)
-    item = arr[i]
-    if item.weight <= w:
-        v2, sack2 = knapsack(arr, i - 1, w - item.weight, memo)
-        v2 += item.value
-        if v2 > v:
-            v = v2
-            sack = sack2[:]
-            sack.append(item.key)
+def knapsack(arr, capacity):
+    # Given an array of items (each with weight and value), find the max
+    # value of items that can be fit into a bag with weight capacity. 
+    # Return: value of the items, and a list of the items that should be in the bag.
     
-    memo[key] = v, sack
-    return memo[key]
+    # TODO: Implement me!
+    
+    value = 0
+    items = []
+    return value, items
 
 
 class Item:
@@ -38,10 +27,21 @@ def main():
         Item("E", 15, 1),
         Item("F", 200, 80)
     ]
-    max_weight = 50
-    memo = {}
-    result = knapsack(items, len(items) - 1, max_weight, memo)
-    print(f"Results: {result}")
+    capacity = 50
+    expected_value = 720
+    expected_items = ["A", "C", "D"]
+    
+    value, items = knapsack(items, capacity)
+    print(f"Results: {value}, {items}")
+
+    if expected_value != value:
+        print(f"Wrong value. Got {value}. Expected {expected_value}.")
+
+    if expected_items != items:
+        print(f"Wrong items. Got {items}. Expected {expected_items}.")
+    
+    if (expected_items == items) and (expected_value == value):
+        print("Answer is correct!")
 
 
 if __name__ == "__main__":

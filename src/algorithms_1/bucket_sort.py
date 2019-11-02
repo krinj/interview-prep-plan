@@ -1,28 +1,22 @@
 # Problem: Print the k most frequent numbers in a list.
+# Optimal Time: O(n) Space: O(n)
+
+# Example Input: [1, 2, 1, 3, 3, 3], k =2
+# Example Output: [3, 1]
 
 def k_most_frequent(arr, k):
-    f_map = {}
-    for x in arr:
-        if x in f_map:
-            f_map[x] += 1
-        else:
-            f_map[x] = 1
-    n = len(arr)
-    buckets = [[] for _ in range(n)]
-    for x, count in f_map.items():
-        buckets[count].append(x)
-    result = []
-    for i in range(n - 1, -1, -1):
-        b = buckets[i]
-        for x in b:
-            result.append(x)
-            if len(result) == k:
-                return result
-    return None
+    # TODO: Implement me!
+    return []
 
 def main():
     arr = [1, 1, 2, 2, 3, 2, 5, 4, 6, 2, 7, 5, 5, 5, 5, 9, 8, 10]
-    print(k_most_frequent(arr, k=3))
+    expected_answer = [5, 2, 1]
+    result = k_most_frequent(arr, k=3)
+    print(f"Result: {result}")
+    if result == expected_answer:
+        print("Answer is correct!")
+    else:
+        print(f"Answer is wrong. Expecting: {expected_answer}")
 
 if __name__ == "__main__":
     main()
